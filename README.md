@@ -1,6 +1,6 @@
 # Analgesic Bullet
 
-Shoot the drunk and the magic bullet will instantly sober them up instantly! Be careful though, you may remind them that they are your enemy!
+Shoot the drunk and the magic bullet will sober them up instantly! Be careful though, you may remind them that they are your enemy!
 
 ## Convars
 

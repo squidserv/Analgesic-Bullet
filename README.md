@@ -22,7 +22,7 @@ ttt_analgesic_not_drunk                     1       // How to handle if the gun 
 
 ## WARNING
 
-You must be using Custom Roles version 1.2.7 for this mod to work.
+You must be using Custom Roles version 1.2.7 or newer for this mod to work.
 
 ## Special Thanks:
 - [Noxx](https://steamcommunity.com/id/noxxflame) and [Malivil](https://steamcommunity.com/id/malivil) for all their work on Custom Roles for TTT

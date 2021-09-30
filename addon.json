@@ -1,0 +1,15 @@
+{
+  "title": "Analgesic Bullet",
+  "type": "Weapon",
+  "ignore": [
+    ".git*",
+    ".vscode*",
+    "*.md",
+    "*.iml",
+    ".idea*",
+    "*.psd",
+    "*.vcproj",
+    "*.svn*",
+    "LICENSE"
+  ]
+}

@@ -82,11 +82,11 @@ function SWEP:PrimaryAttack()
         local tgt = tr.Entity
         if SERVER then
             if not tgt:IsPlayer() or tgt:IsAlive() then return end
-            local team = p:GetRoleTeam(true)
             if tgt:IsDrunk() then
+                local team = p:GetRoleTeam(true)
                 if team ~= ROLE_TEAM_JESTER then
                     if math.random() <= randomChance then
-                        tgt:SoberDrunk(p:GetRoleTeam(true))
+                        tgt:SoberDrunk(team)
                     else
                         tgt:SoberDrunk()
                     end

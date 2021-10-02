@@ -79,8 +79,8 @@ function SWEP:PrimaryAttack()
     Bullet.TracerName = "TRACER_NONE"
 
     Bullet.Callback = function(atk, tr, dmg)
-        local tgt = tr.Entity
         if SERVER then
+            local tgt = tr.Entity
             if not IsPlayer(tgt) or tgt:IsSpec() or not tgt:Alive() then return end
             if tgt:IsDrunk() then
                 local team = p:GetRoleTeam(true)

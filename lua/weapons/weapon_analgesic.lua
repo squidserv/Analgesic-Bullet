@@ -53,8 +53,6 @@ function SWEP:SecondaryAttack()
 
     self:SetIronsights( bIronsights )
 
-    self:SetZoom( bIronsights )
-
     self:SetNextSecondaryFire( CurTime() + 0.3 )
 end
 
@@ -109,12 +107,10 @@ end
 
 function SWEP:Holster()
     self:SetIronsights(false)
-    self:SetZoom(false)
     return true
 end
 
 function SWEP:PreDrop()
-    self:SetZoom(false)
     self:SetIronsights(false)
     return self.BaseClass.PreDrop(self)
 end
@@ -122,7 +118,6 @@ end
 function SWEP:Reload()
     self.Weapon:DefaultReload( ACT_VM_RELOAD );
     self:SetIronsights( false )
-    self:SetZoom(false)
 end
 
 function SWEP:WasBought(buyer)

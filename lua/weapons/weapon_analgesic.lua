@@ -81,7 +81,7 @@ function SWEP:PrimaryAttack()
     Bullet.Callback = function(atk, tr, dmg)
         local tgt = tr.Entity
         if SERVER then
-            if not tgt:IsPlayer() or tgt:IsAlive() then return end
+            if not IsPlayer(tgt) or tgt:IsSpec() or not tgt:Alive() then return end
             if tgt:IsDrunk() then
                 local team = p:GetRoleTeam(true)
                 if team ~= ROLE_TEAM_JESTER then

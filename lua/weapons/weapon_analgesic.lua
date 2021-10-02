@@ -3,9 +3,10 @@ if SERVER then
 end
 
 if CLIENT then
-    SWEP.PrintName       = "Analgesic Bullet"
+    SWEP.PrintName      = "Analgesic Bullet"
     SWEP.Author			= "Squid Matty"
-    SWEP.Contact			= "https://steamcommunity.com/id/mattyp92/";
+    SWEP.Contact		= "https://steamcommunity.com/id/mattyp92/"
+    SWEP.Icon           = "vgui/ttt/icon_analgesic.png"
     SWEP.Instructions	= "Shoot the drunk to sober them up"
     SWEP.Slot = 0
     SWEP.SlotPos = 1

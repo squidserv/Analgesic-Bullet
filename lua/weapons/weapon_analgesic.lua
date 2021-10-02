@@ -82,22 +82,23 @@ function SWEP:PrimaryAttack()
         if SERVER then
             local tgt = tr.Entity
             if not IsPlayer(tgt) or tgt:IsSpec() or not tgt:Alive() then return end
+            local drunkSwitch = nonDrunk:GetInt()
             if tgt:IsDrunk() then
                 local team = p:GetRoleTeam(true)
                 if team ~= ROLE_TEAM_JESTER then
-                    if math.random() <= randomChance then
+                    if math.random() <= randomChance:GetFloat() then
                         tgt:SoberDrunk(team)
                     else
                         tgt:SoberDrunk()
                     end
-                elseif jesterUse then
+                elseif jesterUse:GetBool() then
                     tgt:SoberDrunk()
                 end
-            elseif nonDrunk == 1 then
+            elseif drunkSwitch == 1 then
                 tgt:Kill()
-            elseif nonDrunk == 2 then
+            elseif drunkSwitch == 2 then
                 p:Kill()
-            elseif nonDrunk == 3 then
+            elseif drunkSwitch == 3 then
                 tgt:SetHealth(tgt:GetMaxHealth())
             end
         end

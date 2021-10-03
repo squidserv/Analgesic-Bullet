@@ -41,10 +41,12 @@ SWEP.Primary.Ammo		= "Analgesic"
 
 SWEP.Weight					= 7
 
-local randomChance = CreateConVar( "ttt_analgesic_random_team", 0.50 , {FCVAR_ARCHIVE, FCVAR_REPLICATED}, "The chance the drunk joins the user's team" )
-local nonDrunk = CreateConVar( "ttt_analgesic_not_drunk", 1 , {FCVAR_ARCHIVE, FCVAR_REPLICATED}, "How it should handle being used on non-drunks" )
-local jesterUse = CreateConVar( "ttt_analgesic_jester_use", 0 , {FCVAR_ARCHIVE, FCVAR_REPLICATED}, "Can Jester's use it?" )
-
+if SERVER then
+    randomChance = CreateConVar( "ttt_analgesic_random_team", 0.50 , {FCVAR_NONE}, "The chance the drunk joins the user's team" )
+    nonDrunk = CreateConVar( "ttt_analgesic_not_drunk", 1 , {FCVAR_NONE}, "How it should handle being used on non-drunks" )
+    jesterUse = CreateConVar( "ttt_analgesic_jester_use", 0 , {FCVAR_NONE}, "Can Jester's use it?" )
+    cantMiss = CreateConVar( "ttt_analgesic_cant_miss", 1 , {FCVAR_NONE}, "Does it use up bullets if you miss?" )
+end
 
 function SWEP:SecondaryAttack()
     if not self.IronSightsPos then return end
@@ -62,13 +64,13 @@ function SWEP:PrimaryAttack()
     if self:Clip1() <= 0 or not CR_VERSION or not CRVersion("1.2.7") then return end
 
     self:SendWeaponAnim(self.PrimaryAnim)
-    self.Owner:MuzzleFlash()
-    self.Owner:SetAnimation( PLAYER_ATTACK1 )
+    p:MuzzleFlash()
+    p:SetAnimation( PLAYER_ATTACK1 )
 
     local Bullet = {}
 
     Bullet.Dmgtype = "DMG_GENERIC"
-    Bullet.Num = num
+    Bullet.Num = 0
     Bullet.Spread = Vector( cone, cone, 0 )
     Bullet.Tracer = 0
     Bullet.Force = 0
@@ -96,13 +98,18 @@ function SWEP:PrimaryAttack()
             elseif drunkSwitch == 1 then
                 tgt:Kill()
             elseif drunkSwitch == 2 then
-                p:Kill()
+                atk:Kill()
             elseif drunkSwitch == 3 then
                 tgt:SetHealth(tgt:GetMaxHealth())
             end
+            atk:GetActiveWeapon():Remove()
         end
     end
-    self:TakePrimaryAmmo( 1 )
+    if SERVER then
+        if not cantMiss:GetBool() then
+            self:TakePrimaryAmmo( 1 )
+        end
+    end
     p:FireBullets( Bullet )
 end
 

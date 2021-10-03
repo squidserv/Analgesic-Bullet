@@ -9,6 +9,7 @@ Add the following to your server.cfg (for dedicated servers) or listenserver.cfg
 ```cpp
 ttt_analgesic_random_team                   0.50    // The chance that the drunk will join the team that uses it
 ttt_analgesic_jester_use                    0       // Whether the gun does anything if a Jester Team uses it
+ttt_analgesic_cant_miss                     1       // Stops you from using ammo if you miss
 ttt_analgesic_not_drunk                     1       // How to handle if the gun is used on someone who isn't drunk
 
 // ----------------------------------------

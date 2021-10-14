@@ -82,7 +82,8 @@ function SWEP:PrimaryAttack()
     Bullet.Callback = function(atk, tr, dmg)
         if SERVER then
             local tgt = tr.Entity
-            if not IsPlayer(tgt) or tgt:IsSpec() or not tgt:Alive() then return end
+            if not IsPlayer(tgt) or not IsPlayer(atk) then return end
+            if tgt:IsSpec() or not tgt:Alive() or atk:IsSpec() or not atk:Alive() then return end
             local drunkSwitch = nonDrunk:GetInt()
             if tgt:IsDrunk() then
                 local team = p:GetRoleTeam(true)
@@ -102,7 +103,11 @@ function SWEP:PrimaryAttack()
             elseif drunkSwitch == 3 then
                 tgt:SetHealth(tgt:GetMaxHealth())
             end
-            atk:GetActiveWeapon():Remove()
+
+            local wep = atk:GetActiveWeapon()
+            if wep ~= nil then
+                wep:Remove()
+            end
         end
     end
     if SERVER then
